@@ -1,8 +1,12 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+import path from "path";
+import { fileURLToPath } from "url";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
-module.exports = {
+// Эквивалент __dirname в ES-модулях
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default {
   entry: "./src/index.js",
   output: {
     filename: "bundle.js",
