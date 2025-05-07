@@ -6,15 +6,19 @@ branches:
     - master
     - main
 
-cache: node_modules
+cache:
+  - node_modules -> yarn.lock
 
 install:
-  - yarn install
-
-build: off
+  - yarn install --frozen-lockfile
 
 build_script:
-  - yarn run build
+  - yarn run build || exit 1
+  - if not exist dist\bundle.js exit 1
 
 test_script:
-  - yarn run lint && yarn test
+  - yarn run lint || exit 1
+  - yarn test || exit 1
+
+on_finish:
+  - ps: if($env:APPVEYOR_JOB_RESULT -eq "failed") { exit 1 }
