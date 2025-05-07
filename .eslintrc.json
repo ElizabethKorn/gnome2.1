@@ -1,22 +1,33 @@
 {
   "extends": "airbnb-base",
   "env": {
-    "browser": true,
-    "jest": true
+      "browser": true,
+      "jest": true
   },
   "rules": {
-    "quotes": ["error", "single", { "avoidEscape": true }],
-    "import/extensions": ["error", "ignorePackages"],
-    "no-alert": "off",
-    "class-methods-use-this": "off",
-    "no-console": "off",
-    "import/prefer-default-export": "off"
+      "quotes": [
+          "error",
+          "single",
+          {
+              "avoidEscape": true
+          }
+      ],
+      "import/extensions": [
+          "error",
+          "ignorePackages"
+      ],
+      "no-alert": "off",
+      "class-methods-use-this": "off",
+      "no-console": "off",
+      "import/prefer-default-export": "off"
   },
   "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js"]
+      "import/resolver": {
+          "node": {
+              "extensions": [
+                  ".js"
+              ]
+          }
       }
-    }
   }
 }
