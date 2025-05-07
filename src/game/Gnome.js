@@ -7,12 +7,12 @@ export default class Gnome {
   }
 
   createGnomeElement(imageSrc) {
-    const img = document.createElement("img");
+    const img = document.createElement('img');
     img.src = imageSrc;
-    img.className = "gnome";
-    img.alt = "Gnome";
+    img.className = 'gnome';
+    img.alt = 'Gnome';
 
-    img.addEventListener("click", (e) => {
+    img.addEventListener('click', (e) => {
       e.stopPropagation();
       if (this.onClick) this.onClick();
     });
