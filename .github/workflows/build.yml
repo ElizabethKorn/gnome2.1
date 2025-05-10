@@ -8,39 +8,42 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest  # Используем macOS
-    
+    runs-on: macos-latest
+    permissions:
+      contents: read
+      packages: read
+      actions: write
     strategy:
       matrix:
-        node-version: [18]  # Аналог nodejs_version в AppVeyor
+        node-version: [18]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
 
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
-    - name: Build project
-      run: yarn build
-      
-    - name: Verify bundle exists
-      run: test -f dist/bundle.js || exit 1  # macOS-аналог проверки файла
+      - name: Build project
+        run: yarn build
 
-    - name: Run lint
-      run: yarn lint
+      - name: Verify bundle exists
+        run: test -f dist/bundle.js || exit 1
 
-    - name: Run tests
-      run: yarn test
+      - name: Run lint
+        run: yarn lint
 
-    - name: Upload artifacts
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: dist
-        path: dist/
+      - name: Run tests
+        run: yarn test
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
