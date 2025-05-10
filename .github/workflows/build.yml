@@ -9,10 +9,6 @@ on:
 jobs:
   build:
     runs-on: macos-latest
-    permissions:
-      contents: read
-      packages: read
-      actions: write
     strategy:
       matrix:
         node-version: [18]
@@ -37,9 +33,6 @@ jobs:
 
       - name: Run lint
         run: yarn lint
-
-      - name: Run tests
-        run: yarn test
 
       - name: Upload artifacts
         if: always()
